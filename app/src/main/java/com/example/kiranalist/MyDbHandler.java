@@ -87,16 +87,13 @@ public class MyDbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Params.DB_TABLE,Params.KEY_TITLE+"=?",new String[]{s});
     }
-//    public String getListitems(String title)
-//    {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String query = "SELECT * From"+Params.DB_TABLE+" WHERE "+Params.KEY_TITLE+" = "+title;
-//        Cursor cursor = db.rawQuery(query,null);
-//        String s="";
-//        if(cursor.moveToFirst())
-//        {
-//            s = cursor.getString(0);
-//        }
-//        return s;
-//    }
+    public void updates(String KEY_TITLE,String KEY_LIST)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Params.KEY_TITLE,KEY_TITLE);
+        contentValues.put(Params.KEY_LIST,KEY_LIST);
+        db.update(Params.DB_TABLE,contentValues,Params.KEY_TITLE+"= ?",new String[]{KEY_TITLE});
+    }
+
 }
